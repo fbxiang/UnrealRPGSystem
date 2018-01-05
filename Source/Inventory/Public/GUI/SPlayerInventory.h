@@ -6,13 +6,13 @@
 
 class INVENTORY_API SPlayerInventory : public SCompoundWidget
 {
- public:
-	SLATE_BEGIN_ARGS(SPlayerInventory)
-	{}
+public:
+  SLATE_BEGIN_ARGS(SPlayerInventory)
+  {}
   SLATE_ARGUMENT(int32, Rows)
   SLATE_ARGUMENT(int32, Columns)
   SLATE_ARGUMENT(const FInventoryStyle*, Style)
-	SLATE_END_ARGS()
+  SLATE_END_ARGS()
 
-	void Construct(const FArguments& InArgs);
+  void Construct(const FArguments& InArgs);
 };

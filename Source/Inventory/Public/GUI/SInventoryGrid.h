@@ -13,6 +13,7 @@ class INVENTORY_API SInventoryGrid : public SCompoundWidget
   SLATE_ARGUMENT(int32, Rows)
   SLATE_ARGUMENT(int32, Columns)
   SLATE_ARGUMENT(const FSlateBrush*, SlotImage)
+  SLATE_ARGUMENT(const FSlateBrush*, HoveredSlotImage)
 	SLATE_END_ARGS()
 
 	void Construct(const FArguments& InArgs);

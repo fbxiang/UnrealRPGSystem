@@ -29,6 +29,9 @@ struct INVENTORY_API FInventoryStyle : public FSlateWidgetStyle
   FSlateBrush SlotImage;
 
   UPROPERTY(EditAnywhere, Category = Inventory)
+  FSlateBrush HoveredSlotImage;
+
+  UPROPERTY(EditAnywhere, Category = Inventory)
   FSlateBrush BackgroundImage;
 };
 

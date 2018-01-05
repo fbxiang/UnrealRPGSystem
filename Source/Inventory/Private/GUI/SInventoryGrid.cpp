@@ -18,6 +18,7 @@ void SInventoryGrid::Construct(const FArguments& InArgs)
       [
           SNew(SInventorySlot)
           .Image(InArgs._SlotImage)
+          .HoveredImage(InArgs._HoveredSlotImage)
        ];
     }
   }
@@ -28,8 +29,9 @@ void SInventoryGrid::Construct(const FArguments& InArgs)
   [
       SNew(SVerticalBox)
       +SVerticalBox::Slot()
-      .VAlign(VAlign_Center)
+      .VAlign(VAlign_Bottom)
       .HAlign(HAlign_Center)
+      .Padding(0, 30)
       [
           gridPanel.ToSharedRef()
        ]

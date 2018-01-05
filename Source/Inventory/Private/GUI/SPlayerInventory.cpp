@@ -10,6 +10,7 @@ void SPlayerInventory::Construct(const FArguments& InArgs) {
   const FInventoryStyle* style = InArgs._Style;
   const FSlateBrush* background = style ? &(style->BackgroundImage) : NULL;
   const FSlateBrush* slotImage = style ? &(style->SlotImage) : NULL;
+  const FSlateBrush* hoveredSlotImage = style ? &(style->HoveredSlotImage) : NULL;
 
   ChildSlot
   .VAlign(VAlign_Center)
@@ -32,6 +33,7 @@ void SPlayerInventory::Construct(const FArguments& InArgs) {
               .Rows(rows)
               .Columns(cols)
               .SlotImage(slotImage)
+              .HoveredSlotImage(hoveredSlotImage)
            ]
        ]
    ];
