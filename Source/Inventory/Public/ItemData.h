@@ -1,13 +1,11 @@
 #pragma once
 
-#include "CoreMinimal.h"
+#include "Engine/DataTable.h"
+#include "ItemData.generated.h"
 
-UStruct(BlueprintType)
+USTRUCT(BlueprintType)
 struct FItemData : public FTableRowBase {
   GENERATED_USTRUCT_BODY()
-
-  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
-  FString Name;
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
   int32 Width;
@@ -16,5 +14,8 @@ struct FItemData : public FTableRowBase {
   int32 Height;
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
-  TSoftObjectPtr<UTexture> Icon;
-}
+  int32 MaxStackSize;
+
+  UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
+  UTexture2D* Icon;
+};
