@@ -12,7 +12,7 @@ class UItem : public UObject {
   UTexture2D* HUDTexture;
 
   UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Inventory)
-  FString UniqueName;
+  FName UniqueName;
 
   UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Inventory)
   int32 MaxStackSize;
