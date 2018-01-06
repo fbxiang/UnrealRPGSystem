@@ -8,6 +8,6 @@ public class RPGSystemEditorTarget : TargetRules
 	public RPGSystemEditorTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Editor;
-		ExtraModuleNames.AddRange(new string[]{"RPGSystem", "Inventory"});
+		ExtraModuleNames.AddRange(new string[]{"RPGSystem", "Inventory", "RPGModuleBase"});
 	}
 }

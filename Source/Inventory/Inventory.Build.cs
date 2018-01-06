@@ -16,7 +16,7 @@ public class Inventory : ModuleRules
 
         PublicDependencyModuleNames.AddRange(new string[] {"Core", "InputCore"});
 
-        PrivateDependencyModuleNames.AddRange(new string[] { "CoreUObject",	"Engine",	"Slate", "SlateCore" });
+        PrivateDependencyModuleNames.AddRange(new string[] { "CoreUObject",	"Engine",	"Slate", "SlateCore", "RPGModuleBase" });
 
         DynamicallyLoadedModuleNames.AddRange(new string[] {});
     }

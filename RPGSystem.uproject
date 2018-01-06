@@ -8,10 +8,19 @@
 			"Name": "RPGSystem",
 			"Type": "Runtime",
 			"LoadingPhase": "Default"
-		}, {
-        "Name": "Inventory",
-        "Type": "Runtime",
-        "LoadingPhase": "Default"
-    }
+		},
+		{
+			"Name": "Inventory",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"RPGModuleBase"
+			]
+		},
+		{
+			"Name": "RPGModuleBase",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
 	]
 }

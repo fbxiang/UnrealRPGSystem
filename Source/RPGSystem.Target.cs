@@ -8,6 +8,6 @@ public class RPGSystemTarget : TargetRules
 	public RPGSystemTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		ExtraModuleNames.AddRange(new string[]{"RPGSystem", "Inventory"});
+		ExtraModuleNames.AddRange(new string[]{"RPGSystem", "Inventory", "RPGModuleBase"});
 	}
 }
