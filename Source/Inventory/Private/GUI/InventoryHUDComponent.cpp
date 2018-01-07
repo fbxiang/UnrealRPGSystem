@@ -18,6 +18,7 @@ void UInventoryHUDComponent::Close() {
 
 void UInventoryHUDComponent::ConnectTo(UInventoryComponent* inventory) {
   InventoryModel = inventory;
+  Update();
 }
 
 void UInventoryHUDComponent::Update() {
@@ -25,9 +26,14 @@ void UInventoryHUDComponent::Update() {
   UInventoryGrid* grid = InventoryModel->InventoryGrid;
   // TODO: Ensure width and height match first
 
+  int32 s = 0;
   for (int32 row = 0; row < grid->Height; row++) {
     for (int32 col = 0; col < grid->Width; col++) {
       UItemStack* stack = grid->GetPrimaryItemStackAt(row, col);
+      if (stack) {
+        s++;
+      }
     }
   }
+  GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, TEXT("Found ") + FString::FromInt(s) + TEXT(" items in inventory"));
 }

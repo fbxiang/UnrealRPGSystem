@@ -12,8 +12,12 @@ UInventoryComponent::UInventoryComponent()
 void UInventoryComponent::BeginPlay()
 {
 	Super::BeginPlay();
-  UItemStack::Create(TEXT("DebugRing1"), 1, this);
-  // InventoryGrid->PutItemStackAt(0, 0, UItemStack::Create(TEXT("DebugRing1"), 1, this));
+  InventoryGrid->Initialize();
+
+  // this line is for debug
+  auto stack = UItemStack::Create(TEXT("DebugRing1"), 1, this);
+  if (InventoryGrid->CanPutItemStackAt(0, 0, stack))
+    InventoryGrid->PutItemStackAt(0, 0, stack);
 }
 
 // Called every frame

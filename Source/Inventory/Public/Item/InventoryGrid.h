@@ -59,4 +59,3 @@ class INVENTORY_API UInventoryGrid : public UObject {
 
   void SetItemStackAt(int32 row, int32 col, UItemStack* stack, bool primary);
 };
-

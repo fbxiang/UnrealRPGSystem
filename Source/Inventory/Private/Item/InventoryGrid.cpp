@@ -7,18 +7,24 @@ bool UInventoryGrid::IsValidIndex(int row, int col) {
 
 void UInventoryGrid::Initialize() {
   ItemStackInfoArray.SetNum(Width * Height);
+
+  // SetNum does not seem to clear the bits
+  for (int32 i = 0; i < Width * Height; i++) {
+    ItemStackInfoArray[i].Primary = 0;
+    ItemStackInfoArray[i].ItemStack = NULL;
+  }
 }
 
 UItemStack* UInventoryGrid::GetItemStackAt(int32 row, int32 col) {
   if (!IsValidIndex(row, col))
     return NULL;
-  return ItemStackInfoArray[row * Height + col].ItemStack;
+  return ItemStackInfoArray[row * Width + col].ItemStack;
 }
 
 void UInventoryGrid::SetItemStackAt(int32 row, int32 col, UItemStack* stack, bool primary) {
   if (IsValidIndex(row, col)) {
-    ItemStackInfoArray[row * Height + col].ItemStack = stack;
-    ItemStackInfoArray[row * Height + col].Primary = primary;
+    ItemStackInfoArray[row * Width + col].ItemStack = stack;
+    ItemStackInfoArray[row * Width + col].Primary = primary;
   }
 }
 
@@ -151,7 +157,7 @@ UItemStack* UInventoryGrid::ReplaceItemStackAt(int32 row, int32 col, UItemStack*
 UItemStack* UInventoryGrid::GetPrimaryItemStackAt(int32 row, int32 col) {
   if (!IsValidIndex(row, col))
     return NULL;
-  if (ItemStackInfoArray[row * Height + col].Primary)
-    return ItemStackInfoArray[row * Height + col].ItemStack;
+  if (ItemStackInfoArray[row * Width + col].Primary)
+    return ItemStackInfoArray[row * Width + col].ItemStack;
   return NULL;
 }
