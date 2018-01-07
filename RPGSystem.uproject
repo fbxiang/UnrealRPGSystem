@@ -12,7 +12,7 @@
 		{
 			"Name": "Inventory",
 			"Type": "Runtime",
-			"LoadingPhase": "Default",
+			"LoadingPhase": "PreDefault",
 			"AdditionalDependencies": [
 				"RPGModuleBase"
 			]
@@ -20,7 +20,14 @@
 		{
 			"Name": "RPGModuleBase",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "PreDefault"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "CLionSourceCodeAccess",
+			"Enabled": false,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/7a2e6de4c71a48c7b9df5f49b73e1a09"
 		}
 	]
 }

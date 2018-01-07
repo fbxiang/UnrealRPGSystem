@@ -4,6 +4,11 @@
 #include "ItemStack.h"
 #include "InventoryGrid.generated.h"
 
+struct _ItemStackInfo {
+  UItemStack* ItemStack;
+  bool Primary;
+};
+
 UCLASS(EditInlineNew)
 class INVENTORY_API UInventoryGrid : public UObject {
   GENERATED_BODY()
@@ -47,8 +52,11 @@ class INVENTORY_API UInventoryGrid : public UObject {
   UFUNCTION(BlueprintCallable, Category = Inventory)
   UItemStack* MergeItemStackAt(int32 row, int32 col, UItemStack* stack);
 
- private:
-  TArray<UItemStack*> ItemStackArray;
+  UItemStack* GetPrimaryItemStackAt(int32 row, int32 col);
 
-  void SetItemStackAt(int32 row, int32 col, UItemStack* stack);
+ private:
+  TArray<_ItemStackInfo> ItemStackInfoArray;
+
+  void SetItemStackAt(int32 row, int32 col, UItemStack* stack, bool primary);
 };
+

@@ -15,3 +15,19 @@ void UInventoryHUDComponent::Open() {
 void UInventoryHUDComponent::Close() {
   PlayerInventory->SetVisibility(EVisibility::Hidden);
 }
+
+void UInventoryHUDComponent::ConnectTo(UInventoryComponent* inventory) {
+  InventoryModel = inventory;
+}
+
+void UInventoryHUDComponent::Update() {
+  if (!InventoryModel) return;
+  UInventoryGrid* grid = InventoryModel->InventoryGrid;
+  // TODO: Ensure width and height match first
+
+  for (int32 row = 0; row < grid->Height; row++) {
+    for (int32 col = 0; col < grid->Width; col++) {
+      UItemStack* stack = grid->GetPrimaryItemStackAt(row, col);
+    }
+  }
+}

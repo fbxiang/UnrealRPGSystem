@@ -19,4 +19,7 @@ class UItemStack : public UObject {
 
   UFUNCTION(BlueprintCallable, Category = Inventory)
   void MergeWith(UItemStack* other);
+
+  UFUNCTION(BlueprintCallable, Category = Inventory)
+  static UItemStack* Create(FName itemName, int size, UObject* outer);
 };

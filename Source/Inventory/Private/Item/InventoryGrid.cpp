@@ -6,18 +6,20 @@ bool UInventoryGrid::IsValidIndex(int row, int col) {
 }
 
 void UInventoryGrid::Initialize() {
-  ItemStackArray.SetNum(Width * Height);
+  ItemStackInfoArray.SetNum(Width * Height);
 }
 
 UItemStack* UInventoryGrid::GetItemStackAt(int32 row, int32 col) {
   if (!IsValidIndex(row, col))
     return NULL;
-  return ItemStackArray[row * Height + col];
+  return ItemStackInfoArray[row * Height + col].ItemStack;
 }
 
-void UInventoryGrid::SetItemStackAt(int32 row, int32 col, UItemStack* stack) {
-  if (IsValidIndex(row, col))
-    ItemStackArray[row * Height + col] = stack;
+void UInventoryGrid::SetItemStackAt(int32 row, int32 col, UItemStack* stack, bool primary) {
+  if (IsValidIndex(row, col)) {
+    ItemStackInfoArray[row * Height + col].ItemStack = stack;
+    ItemStackInfoArray[row * Height + col].Primary = primary;
+  }
 }
 
 UItemStack* UInventoryGrid::RemoveItemStackAt(int32 row, int32 col) {
@@ -25,9 +27,10 @@ UItemStack* UInventoryGrid::RemoveItemStackAt(int32 row, int32 col) {
   if (!stack) return NULL;
 
   // remove the stack by iterating
-  for (int32 i = 0; i < ItemStackArray.Num(); i++) {
-    if (ItemStackArray[i] == stack) {
-      ItemStackArray[i] = NULL;
+  for (int32 i = 0; i < ItemStackInfoArray.Num(); i++) {
+    if (ItemStackInfoArray[i].ItemStack == stack) {
+      ItemStackInfoArray[i].ItemStack = NULL;
+      ItemStackInfoArray[i].Primary = false;
     }
   }
   return stack;
@@ -55,9 +58,13 @@ UItemStack* UInventoryGrid::PutItemStackAt(int32 row, int32 col, UItemStack* sta
 
   int32 itemWidth = stack->Item->Width;
   int32 itemHeight = stack->Item->Height;
+
+  // TODO: Check it is valid
+  stack->Rename(NULL, this);
+
   for (int32 i = 0; i < itemHeight; ++i) {
     for (int32 j = 0; j < itemWidth; ++j) {
-      SetItemStackAt(row + i, col + j, stack);
+      SetItemStackAt(row + i, col + j, stack, i == 0 && j == 0);
     }
   }
   return NULL;
@@ -139,4 +146,12 @@ UItemStack* UInventoryGrid::ReplaceItemStackAt(int32 row, int32 col, UItemStack*
   UItemStack* removedStack = RemoveItemStackAt(currentRow, currentCol);
   PutItemStackAt(row, col, otherStack);
   return removedStack;
+}
+
+UItemStack* UInventoryGrid::GetPrimaryItemStackAt(int32 row, int32 col) {
+  if (!IsValidIndex(row, col))
+    return NULL;
+  if (ItemStackInfoArray[row * Height + col].Primary)
+    return ItemStackInfoArray[row * Height + col].ItemStack;
+  return NULL;
 }
