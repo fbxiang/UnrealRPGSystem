@@ -16,6 +16,7 @@ class UItemRegistry : public UObject {
 
   private:
   // generate 1 map and 1 table for mutual reference
+  UPROPERTY()
   TMap<FName, UItem*> Name2Item;
 
  public:

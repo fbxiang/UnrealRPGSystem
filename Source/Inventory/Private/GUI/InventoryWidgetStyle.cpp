@@ -16,6 +16,7 @@ const FName FInventoryStyle::TypeName(TEXT("FInventoryStyle"));
 
 const FInventoryStyle& FInventoryStyle::GetDefault()
 {
+  UE_LOG(LogTemp, Warning, TEXT("Getting Default Style"))
 	static FInventoryStyle Default;
 	return Default;
 }
@@ -23,6 +24,7 @@ const FInventoryStyle& FInventoryStyle::GetDefault()
 void FInventoryStyle::GetResources(TArray<const FSlateBrush*>& OutBrushes) const
 {
   OutBrushes.Add(&SlotImage);
+  OutBrushes.Add(&HoveredSlotImage);
   OutBrushes.Add(&BackgroundImage);
 	// Add any brush resources here so that Slate can correctly atlas and reference them
 }

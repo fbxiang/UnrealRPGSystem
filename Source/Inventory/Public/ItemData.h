@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Engine/DataTable.h"
+#include "Slate/SlateBrushAsset.h"
 #include "ItemData.generated.h"
 
 USTRUCT(BlueprintType)

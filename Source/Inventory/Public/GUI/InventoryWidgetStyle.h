@@ -33,6 +33,18 @@ struct INVENTORY_API FInventoryStyle : public FSlateWidgetStyle
 
   UPROPERTY(EditAnywhere, Category = Inventory)
   FSlateBrush BackgroundImage;
+
+  UPROPERTY(EditAnywhere, Category = Inventory)
+  float PanelWidth = 800;
+
+  UPROPERTY(EditAnywhere, Category = Inventory)
+  float PanelHeight = 1200;
+
+  UPROPERTY(EditAnywhere, Category = Inventory)
+  float SlotWidth = 65;
+
+  UPROPERTY(EditAnywhere, Category = Inventory)
+  float SlotHeight = 65;
 };
 
 /**

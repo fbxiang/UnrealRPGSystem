@@ -2,12 +2,14 @@
 
 #include "Object.h"
 #include "Tuple.h"
+#include "Styling/SlateBrush.h"
 #include "Item.generated.h"
 
 UCLASS(Blueprintable)
 class UItem : public UObject {
   GENERATED_BODY()
   public:
+
   UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Inventory)
   UTexture2D* HUDTexture;
 
@@ -25,4 +27,8 @@ class UItem : public UObject {
 
   UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = Inventory)
   int32 Height = 1;
+
+  FSlateBrush* GetTextureBrush();
+ private:
+  FSlateBrush TextureBrush;
 };

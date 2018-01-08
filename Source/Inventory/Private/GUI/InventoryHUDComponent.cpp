@@ -2,8 +2,9 @@
 #include "Widgets/SWeakWidget.h"
 
 void UInventoryHUDComponent::Initialize() {
-  PlayerInventory = SNew(SPlayerInventory).Rows(4).Columns(10)
-  .Style(InventoryStyle ? &InventoryStyle->WidgetStyle : NULL);
+  const FInventoryStyle* style = InventoryStyle ? &InventoryStyle->WidgetStyle : NULL;
+  if (!style) style = &FInventoryStyle::GetDefault();
+  PlayerInventory = SNew(SPlayerInventory).Rows(4).Columns(10).Style(style);
 }
 
 void UInventoryHUDComponent::Open() {
@@ -27,13 +28,14 @@ void UInventoryHUDComponent::Update() {
   // TODO: Ensure width and height match first
 
   int32 s = 0;
+  PlayerInventory->ClearDisplay();
   for (int32 row = 0; row < grid->Height; row++) {
     for (int32 col = 0; col < grid->Width; col++) {
       UItemStack* stack = grid->GetPrimaryItemStackAt(row, col);
       if (stack) {
-        s++;
+        PlayerInventory->DisplayItemStack(row, col, stack);
+        GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, FString::Printf(TEXT("Found item at %d %d"), row, col));
       }
     }
   }
-  GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, TEXT("Found ") + FString::FromInt(s) + TEXT(" items in inventory"));
 }

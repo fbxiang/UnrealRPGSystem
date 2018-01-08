@@ -9,7 +9,7 @@ void UInventoryGrid::Initialize() {
   ItemStackInfoArray.SetNum(Width * Height);
 
   // SetNum does not seem to clear the bits
-  for (int32 i = 0; i < Width * Height; i++) {
+  for (int32 i = 0; i < Width * Height; ++i) {
     ItemStackInfoArray[i].Primary = 0;
     ItemStackInfoArray[i].ItemStack = NULL;
   }
@@ -51,6 +51,8 @@ bool UInventoryGrid::CanPutItemStackAt(int32 row, int32 col, UItemStack* stack) 
       int32 row_i = row + i;
       int32 col_j = col + j;
       if (!IsValidIndex(row_i, col_j) || GetItemStackAt(row_i, col_j) != NULL) {
+        GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red,
+                                         FString::Printf(TEXT("Failed at %d %d"), row_i, col_j));
         return false;
       }
     }

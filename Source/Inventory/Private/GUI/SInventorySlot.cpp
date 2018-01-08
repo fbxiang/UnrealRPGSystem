@@ -11,16 +11,18 @@ void SInventorySlot::Construct(const FArguments& InArgs)
   TAttribute<const FSlateBrush*> ImageAttribute = TAttribute<const FSlateBrush*>::Create(
       TAttribute<const FSlateBrush*>::FGetter::CreateRaw(this, &SInventorySlot::GetImage));
 
-  Image = InArgs._Image;
-  HoveredImage = InArgs._HoveredImage;
-  ImageWidget = SNew(SImage).Image(Image);
+  const FInventoryStyle* style = InArgs._Style;
+
+  Image = &style->SlotImage;
+  HoveredImage = &style->HoveredSlotImage;
+  ImageWidget = SNew(SImage);
   ImageWidget->SetImage(ImageAttribute);
 
 	ChildSlot
  	[
       SNew(SBox)
-      .WidthOverride(65)
-      .HeightOverride(65)
+      .WidthOverride(style->SlotWidth)
+      .HeightOverride(style->SlotHeight)
       [
           ImageWidget.ToSharedRef()
        ]
