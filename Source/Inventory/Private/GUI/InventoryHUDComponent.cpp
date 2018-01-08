@@ -34,7 +34,7 @@ void UInventoryHUDComponent::Update() {
       UItemStack* stack = grid->GetPrimaryItemStackAt(row, col);
       if (stack) {
         PlayerInventory->DisplayItemStack(row, col, stack);
-        GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, FString::Printf(TEXT("Found item at %d %d"), row, col));
+        // GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Yellow, FString::Printf(TEXT("Found item at %d %d"), row, col));
       }
     }
   }
