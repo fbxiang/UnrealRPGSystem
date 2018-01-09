@@ -12,3 +12,16 @@ Saved
 *.suo
 *.xcodeproj
 *.xcworkspace
+/.dir-locals.el
+*.kdev4
+/CMakeLists.txt
+/Makefile
+/RPGSystem.pro
+/RPGSystem.workspace
+/RPGSystemCodeCompletionFolders.txt
+/RPGSystemCodeLitePreProcessor.txt
+/RPGSystemConfig.pri
+/RPGSystemDefines.pri
+/RPGSystemHeader.pri
+/RPGSystemIncludes.pri
+/RPGSystemSource.pri

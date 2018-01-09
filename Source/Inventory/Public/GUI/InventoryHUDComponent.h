@@ -28,5 +28,9 @@ private:
 
 private:
   TSharedPtr<SPlayerInventory> PlayerInventory;
+
+  UPROPERTY()
   UInventoryComponent* InventoryModel;
+
+  FReply HandleMouseMove(const FGeometry& geometry, const FPointerEvent& pointerEvent);
 };

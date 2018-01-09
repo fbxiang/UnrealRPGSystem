@@ -5,6 +5,8 @@ void UInventoryHUDComponent::Initialize() {
   const FInventoryStyle* style = InventoryStyle ? &InventoryStyle->WidgetStyle : NULL;
   if (!style) style = &FInventoryStyle::GetDefault();
   PlayerInventory = SNew(SPlayerInventory).Rows(4).Columns(10).Style(style);
+  PlayerInventory->SetOnMouseMove(
+      FPointerEventHandler::CreateUObject(this, &UInventoryHUDComponent::HandleMouseMove));
 }
 
 void UInventoryHUDComponent::Open() {
@@ -38,4 +40,9 @@ void UInventoryHUDComponent::Update() {
       }
     }
   }
+}
+
+FReply UInventoryHUDComponent::HandleMouseMove(const FGeometry& geometry, const FPointerEvent& pointerEvent) {
+  GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Yellow, "Mouse Detected");
+  return FReply::Handled();
 }

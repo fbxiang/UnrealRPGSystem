@@ -4,8 +4,14 @@
 #include "ItemStack.h"
 #include "InventoryGrid.generated.h"
 
-struct _ItemStackInfo {
+USTRUCT()
+struct FItemStackInfo {
+  GENERATED_USTRUCT_BODY()
+
+  UPROPERTY()
   UItemStack* ItemStack;
+
+  UPROPERTY()
   bool Primary;
 };
 
@@ -55,7 +61,8 @@ class INVENTORY_API UInventoryGrid : public UObject {
   UItemStack* GetPrimaryItemStackAt(int32 row, int32 col);
 
  private:
-  TArray<_ItemStackInfo> ItemStackInfoArray;
+  UPROPERTY()
+  TArray<FItemStackInfo> ItemStackInfoArray;
 
   void SetItemStackAt(int32 row, int32 col, UItemStack* stack, bool primary);
 };
